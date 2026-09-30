@@ -1,0 +1,13 @@
+language: en-US
+reviews:
+  profile: chill
+  high_level_summary: true
+  path_instructions:
+    - path: "lib/**"
+      instructions: >-
+        Public API of a Flutter package. Check that on-device results stay identical to the Python references
+        (tokenizer, prompt rendering, softmax and calibration order) and that nothing is silently truncated.
+    - path: "tool/**"
+      instructions: "Python tools that export models and produce reference outputs; they must stay reproducible."
+chat:
+  auto_reply: true

@@ -1,0 +1,60 @@
+name: Demo
+
+# Publishes the demos to GitHub Pages: a landing page (demo/site), demo/chess at /chess/ (play chess against Dinah-0)
+# and the example app at /playground/ (open models in the browser). Pages needs a public repository (or a paid plan)
+# and Settings > Pages > Source set to "GitHub Actions"; on a private repository the job is skipped.
+on:
+  push:
+    branches: [main]
+    paths: ["demo/**", "example/**", "lib/**", "pubspec.yaml", ".github/workflows/demo.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.10
+          channel: stable
+          cache: true
+      - name: Chess (test and build)
+        working-directory: demo/chess
+        run: |
+          flutter pub get && flutter test
+          flutter build web --release --no-web-resources-cdn --base-href /${{ github.event.repository.name }}/chess/
+      - name: Playground (build)
+        working-directory: example
+        run: |
+          flutter pub get
+          flutter build web --release --no-web-resources-cdn --base-href /${{ github.event.repository.name }}/playground/
+      - name: Assemble the site
+        run: |
+          mkdir -p _site
+          cp -r demo/site/. _site/
+          cp -r demo/chess/build/web _site/chess
+          cp -r example/build/web _site/playground
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

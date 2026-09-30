@@ -1,0 +1,9 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  # Separate packages, analyzed in their own CI steps after their own `pub get`.
+  exclude:
+    - demo/**
+
+formatter:
+  page_width: 120

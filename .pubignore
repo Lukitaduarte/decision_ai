@@ -1,0 +1,37 @@
+# pub reads this file instead of .gitignore, so the .gitignore rules are repeated here.
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+*.iml
+*.ipr
+*.iws
+.idea/
+/pubspec.lock
+**/doc/api/
+.dart_tool/
+.flutter-plugins-dependencies
+/build/
+/coverage/
+*.onnx
+
+# Kept in the repository, not needed by people who depend on the package.
+/test/
+/demo/
+/AGENTS.md
+/CLAUDE.md
+/codecov.yml
+/example/build/
+/example/web/ort/
+
+# The example tab on pub.dev shows example/lib/main.dart: the platform folders, tools, tests and assets stay in the
+# repository (they also hold local signing settings).
+/example/*
+!/example/lib/
+!/example/pubspec.yaml

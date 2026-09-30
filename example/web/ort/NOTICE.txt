@@ -1,0 +1,2 @@
+onnxruntime-web 1.23.0 (https://www.npmjs.com/package/onnxruntime-web), Copyright (c) Microsoft Corporation.
+Licensed under the MIT License: https://github.com/microsoft/onnxruntime/blob/main/LICENSE

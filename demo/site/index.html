@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>decision_ai demos</title>
+  <meta name="description" content="Typed decisions (jev-style) running in your browser with decision_ai: play chess against Dinah-0, or try open models.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --surface: #ffffff;
+      --text: #16151c;
+      --muted: #5d5b6b;
+      --border: #e3e1ee;
+      --accent: #7c5cff;
+      --accent-text: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #131218;
+        --surface: #1d1b24;
+        --text: #ecebf2;
+        --muted: #a6a3b5;
+        --border: #2e2b38;
+        --accent: #a592ff;
+        --accent-text: #16151c;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main { max-width: 880px; margin: 0 auto; padding: 56px 16px 40px; }
+    header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    header img { width: 64px; height: 64px; border-radius: 50%; }
+    h1 { font-size: 2rem; margin: 0; letter-spacing: -0.01em; }
+    .lead { color: var(--muted); margin: 0 0 32px; max-width: 640px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .card {
+      display: flex; flex-direction: column; gap: 12px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+      color: inherit; text-decoration: none; transition: border-color .15s, transform .15s;
+    }
+    .card:hover, .card:focus-visible { border-color: var(--accent); transform: translateY(-2px); outline: none; }
+    .card h2 { font-size: 1.25rem; margin: 0; }
+    .card p { margin: 0; color: var(--muted); flex: 1; }
+    .cta {
+      align-self: flex-start; background: var(--accent); color: var(--accent-text);
+      border-radius: 999px; padding: 8px 18px; font-weight: 600;
+    }
+    footer { margin-top: 40px; color: var(--muted); font-size: .9rem; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="dinah.png" alt="Dinah, a black cat, drawn by Shunnk">
+      <h1>decision_ai</h1>
+    </header>
+    <p class="lead">
+      Typed decisions (jev-style: choice, noul, score) answered by open models running entirely in your browser. No
+      server, no key: each model is downloaded once from Hugging Face and cached.
+    </p>
+    <div class="cards">
+      <a class="card" href="chess/">
+        <h2>Play chess against Dinah</h2>
+        <p>Dinah-0, a 150M-parameter decision model, picks her moves in your browser. Expect a beginner (she's just a
+          kitten, after all).</p>
+        <span class="cta">Play chess</span>
+      </a>
+      <a class="card" href="playground/">
+        <h2>Try decision_ai with open models</h2>
+        <p>Pick a model (Dinah-0, SmolLM2, Laya, Verdict), ask your own typed questions and see the
+          probabilities.</p>
+        <span class="cta">Open the playground</span>
+      </a>
+    </div>
+    <footer>
+      Built with <a href="https://github.com/Lukitaduarte/decision_ai">decision_ai</a>, a Flutter package for typed
+      decisions on the device, in the browser or behind an API. Dinah drawn by Shunnk.
+    </footer>
+  </main>
+</body>
+</html>
