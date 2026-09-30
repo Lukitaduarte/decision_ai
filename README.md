@@ -103,6 +103,16 @@ context throws `RequestTooLong`: nothing is ever cut.
 | `DecisionAI.api(endpoint:, apiKey:, model:)` | behind any Decision API provider | big models |
 | `DecisionAI.openRouter(apiKey:, model:)` | behind OpenRouter's Decisions API | big models, one key |
 
+To bundle a model with `DecisionAI.local()`, declare its folders as assets in your app's `pubspec.yaml`. Flutter only
+ships declared assets, and a folder does not include its subfolders, so each one gets its own line:
+
+```yaml
+flutter:
+  assets:
+    - assets/model/        # decision_ai.json and tokenizer.json
+    - assets/model/onnx/   # the model file
+```
+
 After the first download, `huggingFace` and `remote` work offline. `onProgress` reports download progress. Every
 engine has `close()`.
 
