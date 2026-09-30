@@ -1,0 +1,15 @@
+{
+  "format": "decision-ai/option-reader@1",
+  "name": "Dinah-0",
+  "license": "cc-by-nc-4.0",
+  "homepage": "https://huggingface.co/Lukitaduarte/dinah-0",
+  "files": {"model": "onnx/model_8bit.onnx", "tokenizer": "tokenizer.json"},
+  "sha256": {"onnx/model_8bit.onnx": "da9b977882dc6781e16958b9e4cd3f8ff37582fd3fd7ff41d935f49ca6f793e0", "tokenizer.json": "edeac9e7b2f170022cefd1c7b396ebca3ac9c57f2f93604844cb7fb16b1a71ca"},
+  "max_length": 8192,
+  "pad_multiple": 64,
+  "tokens": {"cls": "[CLS]", "sep": "[SEP]", "pad": "[PAD]", "option": "[OPT]"},
+  "question_types": {"noul": 0, "choice": 1, "score": 2},
+  "noul_false_default": "The statement above is false.",
+  "inputs": {"ids": "ids", "pad_mask": "pad_mask", "option_positions": "opt_positions", "option_mask": "opt_mask", "question_type": "qtype"},
+  "outputs": {"logits": "logits", "confidence_logit": "conf_logit"}
+}
